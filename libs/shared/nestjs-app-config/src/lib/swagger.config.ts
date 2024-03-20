@@ -8,9 +8,7 @@ export const getSwaggerSpecDirPath = () => {
 };
 
 export const getSwaggerSpecFilePath = (meta: AppMeta) => {
-  return `${getSwaggerSpecDirPath()}TtG-${
-    meta.version
-  }-swagger-spec.json`;
+  return `${getSwaggerSpecDirPath()}TtG-${meta.version}-swagger-spec.json`;
 };
 
 export const configureSwagger = (app: INestApplication, meta: AppMeta) => {
