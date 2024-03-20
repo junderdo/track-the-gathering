@@ -67,7 +67,31 @@
       "options": {
         "targetName": "test"
       }
+    },
+    {
+      "plugin": "@nx/cypress/plugin",
+      "options": {
+        "targetName": "e2e",
+        "componentTestingTargetName": "component-test"
+      }
     }
   ],
-  "nxCloudAccessToken": "ZjczZjZlMGQtNWY3ZC00ZjNmLTg4MDQtZWE5OTk1ZjNjYmFjfHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "ZjczZjZlMGQtNWY3ZC00ZjNmLTg4MDQtZWE5OTk1ZjNjYmFjfHJlYWQtd3JpdGU=",
+  "generators": {
+    "@nx/react": {
+      "application": {
+        "babel": true,
+        "style": "tailwind",
+        "linter": "eslint",
+        "bundler": "webpack"
+      },
+      "component": {
+        "style": "tailwind"
+      },
+      "library": {
+        "style": "tailwind",
+        "linter": "eslint"
+      }
+    }
+  }
 }
