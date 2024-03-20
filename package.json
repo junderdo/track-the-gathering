@@ -3,7 +3,19 @@
   "version": "0.1.0",
   "license": "ISC",
   "scripts": {
-    "start": "nx run-many -t serve"
+    "start": "nx run-many -t serve",
+    "start:compose:dev": "docker compose -f docker-compose.dev.yml up -d",
+    "build": "nx run-many -t build",
+    "build:affected": "nx affected -t build --base=origin/staging --parallel --max-parallel=3",
+    "lint": "nx run-many -t lint",
+    "lint:affected": "nx affected -t lint --base=origin/staging --parallel --max-parallel=3",
+    "format": "nx format:write",
+    "format:affected": "nx format:write --uncommitted",
+    "test": "nx run-many -t test",
+    "test:affected": "nx affected -t test --base=origin/staging --parallel --max-parallel=3",
+    "api:migrate": "nx run api:migrate:local",
+    "api:generate:sdk:client": "npx openapi -i \"./docs/swagger/TtG-0.1.0-swagger-spec.json\" -c axios -o ./libs/api/sdk-client/src/lib --name TtGRestClient --useOptions",
+    "prepare": "npx husky install"
   },
   "private": true,
   "dependencies": {
