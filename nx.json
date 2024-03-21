@@ -43,7 +43,10 @@
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/jest.config.[jt]s",
       "!{projectRoot}/src/test-setup.[jt]s",
-      "!{projectRoot}/test-setup.[jt]s"
+      "!{projectRoot}/test-setup.[jt]s",
+      "!{projectRoot}/cypress/**/*",
+      "!{projectRoot}/**/*.cy.[jt]s?(x)",
+      "!{projectRoot}/cypress.config.[jt]s"
     ],
     "sharedGlobals": []
   },
@@ -67,7 +70,31 @@
       "options": {
         "targetName": "test"
       }
+    },
+    {
+      "plugin": "@nx/cypress/plugin",
+      "options": {
+        "targetName": "e2e",
+        "componentTestingTargetName": "component-test"
+      }
     }
   ],
-  "nxCloudAccessToken": "ZjczZjZlMGQtNWY3ZC00ZjNmLTg4MDQtZWE5OTk1ZjNjYmFjfHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "ZjczZjZlMGQtNWY3ZC00ZjNmLTg4MDQtZWE5OTk1ZjNjYmFjfHJlYWQtd3JpdGU=",
+  "generators": {
+    "@nx/react": {
+      "application": {
+        "babel": true,
+        "style": "css",
+        "linter": "eslint",
+        "bundler": "webpack"
+      },
+      "component": {
+        "style": "css"
+      },
+      "library": {
+        "style": "css",
+        "linter": "eslint"
+      }
+    }
+  }
 }
