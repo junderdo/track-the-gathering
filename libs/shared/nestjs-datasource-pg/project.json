@@ -1,0 +1,33 @@
+{
+  "name": "nestjs-datasource-pg",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/nestjs-datasource-pg/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/nestjs-datasource-pg",
+        "tsConfig": "libs/shared/nestjs-datasource-pg/tsconfig.lib.json",
+        "packageJson": "libs/shared/nestjs-datasource-pg/package.json",
+        "main": "libs/shared/nestjs-datasource-pg/src/index.ts",
+        "assets": ["libs/shared/nestjs-datasource-pg/*.md"]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist\\{projectRoot}"
+      }
+    }
+  },
+  "tags": [],
+  "release": {
+    "version": {
+      "generatorOptions": {
+        "packageRoot": "dist\\{projectRoot}",
+        "currentVersionResolver": "git-tag"
+      }
+    }
+  }
+}

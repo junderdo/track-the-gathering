@@ -7,10 +7,10 @@ export default defineConfig({
     ...nxE2EPreset(__filename, {
       cypressDir: 'src',
       webServerCommands: {
-        default: 'nx run track-the-gathering-web:serve',
-        production: 'nx run track-the-gathering-web:preview',
+        default: 'nx run web-app:serve',
+        production: 'nx run web-app:preview',
       },
-      ciWebServerCommand: 'nx run track-the-gathering-web:serve-static',
+      ciWebServerCommand: 'nx run web-app:serve-static',
     }),
     baseUrl: 'http://localhost:4200',
   },

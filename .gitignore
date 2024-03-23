@@ -4,6 +4,7 @@
 dist
 tmp
 /out-tsc
+apps/**/server
 
 # dependencies
 node_modules
@@ -33,9 +34,15 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+/docs/swagger/*
 
 # System Files
 .DS_Store
 Thumbs.db
 
+# Nx cache
 .nx/cache
+
+# Environment config
+.env
+**/env.js

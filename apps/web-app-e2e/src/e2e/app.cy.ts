@@ -1,6 +1,6 @@
 import { getGreeting } from '../support/app.po';
 
-describe('track-the-gathering-web-e2e', () => {
+describe('web-app-e2e', () => {
   beforeEach(() => cy.visit('/'));
 
   it('should display welcome message', () => {

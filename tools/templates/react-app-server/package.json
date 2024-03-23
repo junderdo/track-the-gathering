@@ -1,0 +1,23 @@
+{
+  "name": "react-app-server",
+  "version": "1.0.0",
+  "engines": {
+    "npm": "10.2.4",
+    "node": "20.11.0"
+  },
+  "description": "A simple express server for single page React applications",
+  "main": "index.js",
+  "scripts": {
+    "generate-env": "node scripts/generateEnv.js -o ../env.js",
+    "generate-env:local": "node scripts/generateEnv.js -i ../../../.env -o ../env.js",
+    "start-app": "node index.js",
+    "start": "npm run generate-env && npm run start-app",
+    "start:local": "npm run generate-env:local && npm run start-app"
+  },
+  "author": "junderdo <jeff.underdown@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  }
+}
