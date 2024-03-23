@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { SharedNestjsAppConfigModule } from '@track-the-gathering/nestjs-app-config';
+import { SharedNestjsAppConfigModule } from '@track-the-gathering/shared/nestjs-app-config';
 
 @Module({
   imports: [SharedNestjsAppConfigModule],
