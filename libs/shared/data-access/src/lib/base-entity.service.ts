@@ -45,9 +45,6 @@ export abstract class BaseEntityService<T extends BaseEntity> {
     return this.repository.update(id, data);
   }
 
-  //TODO add create()?
-
-  //TODO handle conflicts on creation
   save(data: T): Promise<T> {
     return this.repository.save(data);
   }
