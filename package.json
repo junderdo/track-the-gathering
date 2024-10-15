@@ -33,11 +33,13 @@
     "class-validator": "^0.14.1",
     "helmet": "^7.1.0",
     "jose": "^5.2.3",
+    "pg-connection-string": "^2.7.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "typeorm-naming-strategies": "^4.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",

@@ -1,33 +1,30 @@
 {
-  "name": "nestjs-datasource-pg",
+  "name": "shared-nestjs-datasource-pg",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/shared/nestjs-datasource-pg/src",
   "projectType": "library",
   "targets": {
-    "build": {
-      "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "outputPath": "dist/libs/shared/nestjs-datasource-pg",
-        "tsConfig": "libs/shared/nestjs-datasource-pg/tsconfig.lib.json",
-        "packageJson": "libs/shared/nestjs-datasource-pg/package.json",
-        "main": "libs/shared/nestjs-datasource-pg/src/index.ts",
-        "assets": ["libs/shared/nestjs-datasource-pg/*.md"]
+        "lintFilePatterns": ["libs/shared/nestjs-datasource-pg/**/*.ts"]
       }
     },
-    "nx-release-publish": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "packageRoot": "dist\\{projectRoot}"
+        "jestConfig": "libs/shared/nestjs-datasource-pg/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
       }
     }
   },
-  "tags": [],
-  "release": {
-    "version": {
-      "generatorOptions": {
-        "packageRoot": "dist\\{projectRoot}",
-        "currentVersionResolver": "git-tag"
-      }
-    }
-  }
+  "tags": []
 }

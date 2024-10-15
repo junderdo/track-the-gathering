@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'nestjs-datasource-pg',
+  displayName: 'shared-nestjs-datasource-pg',
   preset: '../../../jest.preset.js',
   testEnvironment: 'node',
   transform: {
