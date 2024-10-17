@@ -1,6 +1,6 @@
 import { parse } from 'pg-connection-string';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { isProduction } from 'shared/env';
+import { isProduction } from '@track-the-gathering/shared/env';
 import { ClientConfig } from 'pg';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 

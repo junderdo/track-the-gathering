@@ -1,6 +1,6 @@
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { PostgresDataSourceConfig } from './postgres.datasource.config';
-import { isProduction } from 'shared/env';
+import { isProduction } from '@track-the-gathering/shared/env';
 
 describe('PostgresDataSourceConfig', () => {
   const OLD_ENV = process.env;
