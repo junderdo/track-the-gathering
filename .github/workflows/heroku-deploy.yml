@@ -30,9 +30,9 @@ jobs:
       - name: Build API Docker container, push it to Heroku container registry and deploy
         uses: gonuit/heroku-docker-deploy@v1.3.3
         with:
-          email: ${{ secrets.HEROKU_EMAIL }}
+          email: ${{ vars.HEROKU_EMAIL }}
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          heroku_app_name: ${{ vars.HEROKU_APP_NAME }}
           dockerfile_directory: ./apps/api
           dockerfile_name: Dockerfile
           docker_options: "--no-cache"
