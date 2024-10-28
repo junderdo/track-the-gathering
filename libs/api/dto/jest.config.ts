@@ -1,10 +1,11 @@
+/* eslint-disable */
 export default {
-  displayName: 'shared-users-data-access',
-  preset: '../../../../jest.preset.js',
+  displayName: 'shared-users-dto',
+  preset: '../../../jest.preset.js',
   testEnvironment: 'node',
   transform: {
     '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }],
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../../../coverage/libs/shared/users/data-access',
+  coverageDirectory: '../../../coverage/libs/shared/users',
 };

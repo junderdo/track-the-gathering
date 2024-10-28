@@ -1,21 +1,21 @@
 {
-  "name": "shared-users-data-access",
-  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/shared/users/data-access/src",
+  "name": "api-dto",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/api/dto/src",
   "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/shared/users/data-access/**/*.ts"]
+        "lintFilePatterns": ["libs/api/dto/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/shared/users/data-access/jest.config.ts"
+        "jestConfig": "libs/api/dto/jest.config.ts"
       }
     }
   },

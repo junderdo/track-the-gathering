@@ -29,7 +29,10 @@
       ],
       "@track-the-gathering/shared/users/data-access": [
         "libs/shared/users/data-access/src/index.ts"
-      ]
+      ],
+      "@track-the-gathering/api/dto": [
+        "libs/api/dto/src/index.ts"
+      ],
     }
   },
   "exclude": ["node_modules", "tmp"]
