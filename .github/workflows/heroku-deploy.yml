@@ -26,10 +26,10 @@ jobs:
           cache: 'npm'
 
       - run: npm ci
-      - run: npx nx affected -t lint --base=${{ github.ref }}
-      - run: npx nx affected -t test --base=${{ github.ref }} --configuration=ci
-      - run: npx nx affected -t build --base=${{ github.ref }} --head=HEAD
-      # - run: npx nx affected -t e2e-ci --base=${{ github.ref }}
+      - run: npx nx affected -t lint
+      - run: npx nx affected -t test--configuration=ci
+      - run: npx nx affected -t build
+      # - run: npx nx affected -t e2e-ci
 
       - name: Build API Docker container, push it to Heroku container registry and deploy
         uses: gonuit/heroku-docker-deploy@v1.3.3
