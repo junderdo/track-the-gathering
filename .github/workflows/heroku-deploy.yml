@@ -15,14 +15,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Build Docker container, push it to Heroku container registry and deploy
+      - name: Setup build env
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - run: npm ci
+      - run: npx nx affected -t lint test build e2e-ci
+
+      - name: Build API Docker container, push it to Heroku container registry and deploy
         uses: gonuit/heroku-docker-deploy@v1.3.3
         with:
           email: ${{ secrets.HEROKU_EMAIL }}
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
-          dockerfile_directory: ./
+          dockerfile_directory: ./apps/api
           dockerfile_name: Dockerfile
           docker_options: "--no-cache"
           process_type: web
