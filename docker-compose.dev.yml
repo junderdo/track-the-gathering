@@ -1,0 +1,16 @@
+version: '3'
+
+volumes:
+  postgres:
+
+services:
+  postgres:
+    container_name: ttg-pg
+    image: 'postgres:14'
+    env_file:
+      - .env
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - '5432:5432'
+    restart: unless-stopped
