@@ -1,0 +1,106 @@
+{
+  "name": "web-app",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/web-app/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project web-app --web",
+  "targets": {
+    "build": {
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/web-app",
+        "index": "apps/web-app/src/index.html",
+        "main": "apps/web-app/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/web-app/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/web-app/src/favicon.ico",
+          "apps/web-app/src/assets",
+          "apps/web-app/src/env.js",
+          "apps/web-app/src/server"
+        ],
+        "styles": ["apps/web-app/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "dependsOn": ["generate-env"],
+      "configurations": {
+        "production": {
+          "buildTarget": "web-app:build:production"
+        },
+        "development": {
+          "buildTarget": "web-app:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/web-app/**/*.ts", "apps/web-app/**/*.html"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/web-app/jest.config.ts"
+      }
+    },
+    "generate-env": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "cp -r ./tools/templates/react-app-server/* ./apps/web-app/src/server",
+          "node ./apps/web-app/src/server/scripts/generateEnv.js -o ./apps/web-app/src/env.js"
+        ],
+        "parallel": false
+      }
+    },
+    "pre-deploy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "cp -r ./tools/templates/react-app-server/* ./apps/web-app/src/server",
+          "nx build web-app",
+          "docker build -f ./apps/web-app/Dockerfile . -t web-app"
+        ],
+        "parallel": false
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "web-app:build",
+        "staticFilePath": "dist/apps/web-app/browser"
+      }
+    }
+  }
+}

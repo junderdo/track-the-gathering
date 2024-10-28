@@ -15,8 +15,20 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@track-the-gathering/nestjs-app-config": [
+      "@track-the-gathering/shared/auth": ["libs/shared/auth/src/index.ts"],
+      "@track-the-gathering/shared/data-access": [
+        "libs/shared/data-access/src/index.ts"
+      ],
+      "@track-the-gathering/shared/dto": ["libs/shared/dto/src/index.ts"],
+      "@track-the-gathering/shared/env": ["libs/shared/env/src/index.ts"],
+      "@track-the-gathering/shared/nestjs-app-config": [
         "libs/shared/nestjs-app-config/src/index.ts"
+      ],
+      "@track-the-gathering/shared/nestjs-datasource-pg": [
+        "libs/shared/nestjs-datasource-pg/src/index.ts"
+      ],
+      "@track-the-gathering/shared/users/data-access": [
+        "libs/shared/users/data-access/src/index.ts"
       ]
     }
   },
