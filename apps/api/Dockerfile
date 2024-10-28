@@ -20,9 +20,9 @@ RUN npm install reflect-metadata tslib rxjs @nestjs/platform-express axios
 
 # add db migration and seeding scripts
 COPY ./dist/apps/$APP_NAME/migrate ./migrate
-COPY ./dist/apps/$APP_NAME/migrate/seed ./migrate/seed
+# COPY ./dist/apps/$APP_NAME/migrate/seed ./migrate/seed
 RUN npm pkg set 'scripts.migrate'='npx typeorm -o -d ./migrate/datasource.js migration:generate ./migrate/migrations/Migration && npx typeorm -d ./migrate/datasource.js migration:run'
-RUN npm pkg set 'scripts.seed'='node ./migrate/seed/main.js'
+# RUN npm pkg set 'scripts.seed'='node ./migrate/seed/main.js'
 
 # run the app on startup
 CMD node ./main.js
