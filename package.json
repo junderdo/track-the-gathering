@@ -19,7 +19,7 @@
     "test:affected": "nx affected -t test --base=origin/development --parallel --max-parallel=3",
     "api:migrate": "nx run api:migrate:local",
     "api:generate:sdk:client": "npx openapi -i \"./docs/swagger/TtG-0.1.0-swagger-spec.json\" -c axios -o ./libs/api/sdk-client/src/lib --name TtGRestClient --useOptions",
-    "prepare": "npx husky install"
+    "prepare": "npx husky init"
   },
   "private": true,
   "dependencies": {
