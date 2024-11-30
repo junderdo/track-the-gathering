@@ -13,6 +13,7 @@ module.exports = {
       tsConfig: './tsconfig.app.json',
       assets: ['./src/assets'],
       optimization: false,
+      generatePackageJson: true,
       outputHashing: 'none',
     }),
   ],

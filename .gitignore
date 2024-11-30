@@ -40,8 +40,8 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# Nx cache
-.nx/cache
+# Nx cache and logs
+.nx
 
 # Environment config
 .env

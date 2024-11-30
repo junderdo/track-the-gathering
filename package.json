@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "engines": {
     "npm": "10.8.2",
-    "node": "20.18.0"
+    "node": "20.18.1"
   },
   "license": "ISC",
   "scripts": {

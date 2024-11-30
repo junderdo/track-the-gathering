@@ -1,8 +1,6 @@
-TODO: update to match JS requirements / update tooling to use TS
-
 # Deploy to Heroku
 
-_Deploy Docker containers to Heroku via Heroku Registry_
+_Deploy Docker containers to Heroku Container Registry and trigger a release_
 
 ## Pre-requisites
 

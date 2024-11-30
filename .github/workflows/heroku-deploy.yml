@@ -9,6 +9,12 @@ permissions:
   actions: read
   contents: read
 
+env:
+  # Setting an environment variable with the value of a configuration variable
+  HEROKU_APP_WEB_APP: ${{ vars.HEROKU_APP_WEB_APP }}
+  HEROKU_APP_API: ${{ vars.HEROKU_APP_API }}
+  HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+
 jobs:
   deployment:
     runs-on: ubuntu-latest
@@ -25,22 +31,49 @@ jobs:
           node-version: 20
           cache: 'npm'
 
-      - run: npm ci
-      # TODO: change these run commands to use affected
-      # - run: npx nx run api:lint
-      # - run: npx nx run api:test --configuration=ci
-      - run: npx nx run api:build
-      - run: npx nx run api:"migrate:build"
-      # - run: npx nx run-many -t e2e-ci --base=${{ github.ref_name }}
-      
+      - name: Install dependencies
+        run: npm ci
+        # TODO: change these run commands to use affected
 
-      - name: Build API Docker container, push it to Heroku container registry and deploy
-        uses: gonuit/heroku-docker-deploy@v1.3.3
-        with:
-          email: ${{ vars.HEROKU_EMAIL }}
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: ${{ vars.HEROKU_APP_NAME }}
-          dockerfile_directory: ./apps/api
-          dockerfile_name: Dockerfile
-          docker_options: "--no-cache"
-          process_type: web
+      # *** BUILD AND TEST API ***
+      # - name: Lint API
+        # - run: npx nx run api:lint
+      # - name: Test API
+        # - run: npx nx run api:test --configuration=ci
+      - name: Build API
+        run: npx nx run api:build
+      - name: Build DB migration script
+        run: npx nx run api:"migrate:build"
+
+      # *** BUILD AND TEST WEB APP ***
+      # - name: Lint Web App
+        # - run: npx nx run web-app:lint
+      # - name: Test Web App
+        # - run: npx nx run web-app:test --configuration=ci
+      - name: Build web app
+        run: npx nx run web-app:build
+
+      - name: Import web app server
+        run: npx nx run web-app:import-server
+
+      # - name: E2E Tests
+        # - run: npx nx run-many -t e2e-ci --base=${{ github.ref_name }}
+
+
+      - name: Verify build
+        run: |
+          pwd
+          ls -lah
+          ls -lah dist
+          ls -lah dist/apps
+          ls -lah dist/apps/web-app
+          ls -lah dist/apps/web-app/server
+          ls -lah dist/apps/api
+
+      - name: Log into Heroku container registry
+        run: |
+          curl https://cli-assets.heroku.com/install.sh | sh
+          heroku container:login
+
+      - name: Deploy apps to Heroku
+        run: node ./tools/deploy/src/heroku/index.js

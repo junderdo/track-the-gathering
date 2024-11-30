@@ -96,6 +96,7 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
+          "mkdir -p ./dist/apps/api/migrate",
           "cp ./tools/templates/pg-migrate/datasource.js ./dist/apps/api/migrate"
         ],
         "parallel": false

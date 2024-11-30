@@ -8,8 +8,8 @@
   "description": "A simple express server for single page React applications",
   "main": "index.js",
   "scripts": {
-    "generate-env": "node scripts/generateEnv.js -o ../env.js",
-    "generate-env:local": "node scripts/generateEnv.js -i ../../../.env -o ../env.js",
+    "generate-env": "node scripts/generate-env.js -o ../env.js",
+    "generate-env:local": "node scripts/generate-env.js -i ../../../.env -o ../env.js",
     "start-app": "node index.js",
     "start": "npm run generate-env && npm run start-app",
     "start:local": "npm run generate-env:local && npm run start-app"
