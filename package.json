@@ -18,7 +18,7 @@
     "test": "nx run-many -t test",
     "test:affected": "nx affected -t test --base=origin/development --parallel --max-parallel=3",
     "api:migrate": "nx run api:migrate:local",
-    "api:generate:sdk:client": "openapi-generator-cli generate -i ./docs/swagger/TtG-0.1.0-swagger-spec.json -g typescript-rxjs -o ./libs/api/sdk-client",
+    "api:generate:sdk:client": "npx openapi-generator-cli generate -i ./docs/swagger/TtG-0.1.0-swagger-spec.json -g typescript-rxjs -o ./libs/api/sdk-client",
     "prepare": "npx husky init"
   },
   "private": true,
