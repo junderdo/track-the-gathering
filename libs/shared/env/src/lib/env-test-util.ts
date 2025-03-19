@@ -4,8 +4,6 @@
 export class EnvTestUtil {
   private oldEnv: NodeJS.ProcessEnv | undefined;
 
-  constructor() {}
-
   public setMockEnvVars() {
     this.oldEnv = process.env;
     process.env = { ...this.oldEnv };
@@ -34,6 +32,7 @@ export class EnvTestUtil {
   }
 
   public resetEnv() {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     process.env = this.oldEnv!;
   }
 }
