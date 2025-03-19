@@ -1,24 +1,11 @@
-import { DataSource } from 'typeorm';
-import { isProduction } from '@track-the-gathering/shared/env';
+import { DataSource, EntitySchema } from 'typeorm';
 import { PostgresDataSourceConfig } from '@track-the-gathering/shared/nestjs-datasource-pg';
-import {
-  BaseHCEntity,
-  BasePublicEntity,
-} from '@track-the-gathering/shared/data-access';
+import { User } from '@track-the-gathering/shared/users/data-access';
+import { BasePublicEntity } from '@track-the-gathering/shared/data-access';
 
-//TODO handle HC migrations differently than public schema
-const entities: (typeof BasePublicEntity | typeof BaseHCEntity)[] = [];
-const publicEntities = [];
-const hcEntities: (typeof BaseHCEntity)[] = [];
-
-entities.push(...publicEntities);
-
-if (!isProduction) {
-  console.log(
-    'Including Heroku Connect entities in database migration for local development'
-  );
-  entities.push(...hcEntities);
-}
+const entities: typeof BasePublicEntity[] = [
+  User
+];
 console.log('Migrating entities: ', entities);
 
 const dsConfig = PostgresDataSourceConfig.config();

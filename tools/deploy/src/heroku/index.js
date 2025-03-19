@@ -1,7 +1,7 @@
 const { execSync } = require('child_process');
 const { COMMANDS } = require('./utils/cli-commands');
 const {
-  getHerokuAppDetails,
+  getHerokuAppProperties,
   getHerokuContainerRegistryUrl,
 } = require('./utils/heroku');
 
@@ -15,7 +15,7 @@ const execute = () => {
 };
 
 function deployNxProject(nxProjectName) {
-  const [herokuAppName, herokuDynoProcess] = getHerokuAppDetails(nxProjectName);
+  const [herokuAppName, herokuDynoProcess] = getHerokuAppProperties(nxProjectName);
 
   console.log('Running pre-deploy target for ', nxProjectName);
   execSync(COMMANDS.PRE_DEPLOY(nxProjectName));

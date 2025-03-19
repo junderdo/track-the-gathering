@@ -1,5 +1,3 @@
-# Based on write-up: https://blog.nrwl.io/nx-and-node-microservices-b6df3cd1bad6
-# Node JS image research: https://snyk.io/blog/choosing-the-best-node-js-docker-image/
 FROM node:lts-bookworm-slim 
 ARG APP_NAME=api
 
@@ -16,7 +14,7 @@ EXPOSE ${PORT}
 RUN npm install --omit=dev
 
 # install nest dependencies
-RUN npm install reflect-metadata tslib rxjs @nestjs/platform-express axios
+RUN npm install reflect-metadata tslib rxjs @nestjs/platform-express axios @nestjs/swagger
 
 # add db migration and seeding scripts
 COPY ./dist/apps/$APP_NAME/migrate ./migrate

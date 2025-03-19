@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "engines": {
     "npm": "10.8.2",
-    "node": "20.18.0"
+    "node": "20.18.1"
   },
   "license": "ISC",
   "scripts": {
@@ -18,7 +18,7 @@
     "test": "nx run-many -t test",
     "test:affected": "nx affected -t test --base=origin/development --parallel --max-parallel=3",
     "api:migrate": "nx run api:migrate:local",
-    "api:generate:sdk:client": "npx openapi -i \"./docs/swagger/TtG-0.1.0-swagger-spec.json\" -c axios -o ./libs/api/sdk-client/src/lib --name TtGRestClient --useOptions",
+    "api:generate:sdk:client": "npx openapi-generator-cli generate -i ./docs/swagger/TtG-0.1.0-swagger-spec.json -g typescript-rxjs -o ./libs/api/sdk-client",
     "prepare": "npx husky init"
   },
   "private": true,
@@ -61,6 +61,7 @@
     "@nx/web": "18.1.2",
     "@nx/webpack": "18.1.2",
     "@nx/workspace": "18.1.2",
+    "@openapitools/openapi-generator-cli": "^2.16.3",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
     "@svgr/webpack": "^8.0.1",
     "@swc-node/register": "~1.8.0",

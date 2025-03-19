@@ -42,22 +42,22 @@ CMD node ./main.js
 }
 ```
 
-### Bitbucket deployment environment
+### GitHub deployment environment
 
-- Heroku token needs to be generated via Heroku CLI (`heroku authorizations:create`) and stored as a secured Repository Variable in Bitbucket: `HEROKU_API_KEY`
+- Heroku token needs to be generated via Heroku CLI (`heroku authorizations:create`) and stored as a secured repository secret in GitHub: `HEROKU_API_KEY`
 - Deployment variables (defined for both Staging & Production) are based on the NX application name & Heroku application configuration
-  - Example: `APP_NAME_1: heroku-app-name|web` in Bitbucket Deployment Variables means deploy NX app `app-name-1` to the Heroku application named `heroku-app-name` on a `web` dyno process
+  - Example: `APP_NAME_1: heroku-app-name|web` in GitHub environments means deploy NX app `app-name-1` to the Heroku application named `heroku-app-name` on a `web` dyno process
 
 ### Process
 
-On commit to branches defined in `/bitbucket-pipelines.yml`:
+On commit to branches defined in `.github/workflows/heroku-deploy.yml`:
 
 1. The code format is validated via `format:check`
 2. The following NX commands are also run on affected apps:
    - `lint`
    - `test`
    - `build`
-3. The Heroku CLI is downloaded to container running Bitbucket pipeline
+3. The Heroku CLI is downloaded to container running GitHub action
 4. `heroku container:login`
    - uses the Repository Variable defined as `HEROKU_API_KEY`
 5. The `tools/deploy` package is built and executed (see below)
@@ -66,7 +66,7 @@ On commit to branches defined in `/bitbucket-pipelines.yml`:
 
 Source code: `tools/deploy/src/index.ts`
 
-- Uses `BITBUCKET_DEPLOYMENT_ENVIRONMENT` to determine which branch to use as base for comparisons (e.g. 'production' would use 'origin/main' as the base branch)
+- Uses `GITHUB_DEPLOYMENT_ENVIRONMENT` to determine which branch to use as base for comparisons (e.g. 'production' would use 'origin/main' as the base branch)
 - The Heroku application details (i.e. Heroku application name and dyno process) are inferred from the Deployment Variable for the deployment environment & application name
 
 The following then occurs for each of the affected apps:

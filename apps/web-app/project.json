@@ -7,6 +7,7 @@
   "// targets": "to see all targets run: nx show project web-app --web",
   "targets": {
     "build": {
+      "dependsOn": ["generate-env"],
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/web-app",
@@ -18,8 +19,8 @@
         "assets": [
           "apps/web-app/src/favicon.ico",
           "apps/web-app/src/assets",
-          "apps/web-app/src/env.js",
-          "apps/web-app/src/server"
+          "apps/web-app/src/server",
+          "apps/web-app/src/env.js"
         ],
         "styles": ["apps/web-app/src/styles.scss"],
         "scripts": []
@@ -78,8 +79,19 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
+          "mkdir -p ./apps/web-app/src/server",
           "cp -r ./tools/templates/react-app-server/* ./apps/web-app/src/server",
-          "node ./apps/web-app/src/server/scripts/generateEnv.js -o ./apps/web-app/src/env.js"
+          "node ./apps/web-app/src/server/scripts/generate-env.js -o ./apps/web-app/src/env.js"
+        ],
+        "parallel": false
+      }
+    },
+    "import-server": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "cp -r ./apps/web-app/src/server ./dist/apps/web-app",
+          "cp ./apps/web-app/src/env.js ./dist/apps/web-app/env.js"
         ],
         "parallel": false
       }
@@ -88,8 +100,11 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
+          "mkdir -p ./apps/web-app/src/server",
           "cp -r ./tools/templates/react-app-server/* ./apps/web-app/src/server",
           "nx build web-app",
+          "cp -r ./apps/web-app/src/server ./dist/apps/web-app",
+          "cp ./apps/web-app/src/env.js ./dist/apps/web-app/env.js",
           "docker build -f ./apps/web-app/Dockerfile . -t web-app"
         ],
         "parallel": false
